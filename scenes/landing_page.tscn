@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://db4bpyas8gfkh"]
+
+[ext_resource type="Script" uid="uid://cksvjysolnio0" path="res://scenes/landing_page.gd" id="1_ps000"]
+[ext_resource type="Theme" uid="uid://c0x84h6io57pd" path="res://res/soft_light.tres" id="2_nftrr"]
+
+[node name="LandingPage" type="Control" unique_id=1828666239]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ps000")
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=1865513701]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.95
+anchor_right = 0.5
+anchor_bottom = 0.955
+offset_left = -135.5
+offset_top = -23.0
+offset_right = 135.5
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0)
+theme = ExtResource("2_nftrr")
+bbcode_enabled = true
+text = "Please select a Git repository to start."
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=553355700]
+oversampling_override = 1.0
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(960, 480)
+visible = true
+theme = ExtResource("2_nftrr")
+file_mode = 2
+display_mode = 1
+access = 2
+
+[node name="VersionNumber" type="Label" parent="." unique_id=37294328]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_nftrr")
+text = "Pure Diff Viewer v0.xxx"
+
+[connection signal="canceled" from="FileDialog" to="." method="_on_file_dialog_canceled"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]

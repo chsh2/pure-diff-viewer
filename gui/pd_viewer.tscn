@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://ca0jnnij8s0a7"]
+
+[ext_resource type="Script" uid="uid://cx836k060ud8w" path="res://gui/pd_viewer.gd" id="1_4pxdh"]
+[ext_resource type="Script" uid="uid://btrm4jxi5gsh0" path="res://gui/grid_background.gd" id="1_n6tah"]
+[ext_resource type="Theme" uid="uid://c0x84h6io57pd" path="res://res/soft_light.tres" id="3_ljbai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_544ig"]
+
+[node name="PdViewer" type="Control" unique_id=1982347195]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4pxdh")
+
+[node name="GridBackground" type="Control" parent="." unique_id=529506379]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_n6tah")
+
+[node name="Foreground" type="Control" parent="." unique_id=583438807]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TraceShadow" type="Polygon2D" parent="Foreground" unique_id=1129897870]
+visible = false
+
+[node name="PopupPanel" type="PanelContainer" parent="." unique_id=1708545219]
+visible = false
+layout_mode = 0
+offset_right = 188.0
+offset_bottom = 58.0
+theme = ExtResource("3_ljbai")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PopupPanel" unique_id=2134700871]
+custom_maximum_size = Vector2(450, -1)
+layout_mode = 2
+theme = ExtResource("3_ljbai")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_544ig")
+bbcode_enabled = true
+text = "[b]Text[/b]: [color=red][s][osc~][/s][/color][color=green][phasor~][/color]"
+fit_content = true
+autowrap_mode = 2
+
+[node name="BackButton" type="Button" parent="." unique_id=1569277948]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.5
+offset_right = 25.5
+offset_bottom = 38.0
+grow_horizontal = 2
+theme = ExtResource("3_ljbai")
+text = "Upper Level"
+
+[node name="CornerPanel" type="Panel" parent="." unique_id=866129123]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -160.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_ljbai")
+
+[node name="VBox" type="VBoxContainer" parent="CornerPanel" unique_id=1853161157]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ljbai")
+theme_override_constants/separation = 4
+
+[node name="ShowDeleted" type="CheckButton" parent="CornerPanel/VBox" unique_id=1433584444]
+layout_mode = 2
+theme = ExtResource("3_ljbai")
+theme_override_colors/font_color = Color(0.09411765, 0.13333334, 0.1882353, 1)
+button_pressed = true
+text = "Deleted"
+alignment = 2
+
+[node name="ShowAdded" type="CheckButton" parent="CornerPanel/VBox" unique_id=2042134766]
+layout_mode = 2
+theme = ExtResource("3_ljbai")
+theme_override_colors/font_color = Color(0.09411765, 0.13333334, 0.1882353, 1)
+button_pressed = true
+text = "Added"
+alignment = 2
+
+[node name="ShowTextChanged" type="CheckButton" parent="CornerPanel/VBox" unique_id=261486613]
+layout_mode = 2
+theme = ExtResource("3_ljbai")
+theme_override_colors/font_color = Color(0.09411765, 0.13333334, 0.1882353, 1)
+button_pressed = true
+text = "Text Changed"
+alignment = 2
+
+[node name="ShowPropertyChanged" type="CheckButton" parent="CornerPanel/VBox" unique_id=1327484874]
+layout_mode = 2
+theme = ExtResource("3_ljbai")
+theme_override_colors/font_color = Color(0.09411765, 0.13333334, 0.1882353, 1)
+button_pressed = true
+text = "Property Changed"
+alignment = 2
+
+[node name="ShowMoved" type="CheckButton" parent="CornerPanel/VBox" unique_id=187794976]
+layout_mode = 2
+theme = ExtResource("3_ljbai")
+theme_override_colors/font_color = Color(0.09411765, 0.13333334, 0.1882353, 1)
+text = "Moved"
+alignment = 2
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CornerPanel/VBox/ShowDeleted" to="." method="_on_corner_button_pressed"]
+[connection signal="pressed" from="CornerPanel/VBox/ShowAdded" to="." method="_on_corner_button_pressed"]
+[connection signal="pressed" from="CornerPanel/VBox/ShowTextChanged" to="." method="_on_corner_button_pressed"]
+[connection signal="pressed" from="CornerPanel/VBox/ShowPropertyChanged" to="." method="_on_corner_button_pressed"]
+[connection signal="pressed" from="CornerPanel/VBox/ShowMoved" to="." method="_on_corner_button_pressed"]

@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bh7ayntgiorxe"]
+
+[ext_resource type="Script" uid="uid://dm0ee8tbubayo" path="res://gui/widget_element.gd" id="1_kuw87"]
+[ext_resource type="FontFile" uid="uid://cg57ha6bem566" path="res://res/DejaVuSansMono.ttf" id="2_1e0ux"]
+[ext_resource type="Texture2D" uid="uid://cx4evykid064i" path="res://res/icon_bng.svg" id="3_1vcit"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cgoh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0jgm"]
+bg_color = Color(0.25882354, 0.25882354, 0.25882354, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25882354, 0.25882354, 0.25882354, 1)
+
+[node name="WidgetElement" type="Control" unique_id=948980603]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_kuw87")
+
+[node name="Fill" type="Panel" parent="." unique_id=211223936]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 24.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8cgoh")
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=1976918375]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 50.0
+theme_override_colors/default_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+theme_override_fonts/normal_font = ExtResource("2_1e0ux")
+theme_override_font_sizes/normal_font_size = 12
+text = "text文字"
+fit_content = true
+autowrap_mode = 0
+
+[node name="SideLabel" type="RichTextLabel" parent="." unique_id=497408010]
+visible = false
+layout_mode = 0
+offset_left = -60.0
+offset_top = 64.0
+offset_right = 20.0
+offset_bottom = 82.0
+theme_override_colors/default_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+theme_override_fonts/normal_font = ExtResource("2_1e0ux")
+theme_override_font_sizes/normal_font_size = 12
+text = "text文字"
+fit_content = true
+autowrap_mode = 0
+
+[node name="BoxCornerUp" type="Polygon2D" parent="." unique_id=918581131]
+visible = false
+color = Color(0.2159017, 0.21590173, 0.2159017, 1)
+polygon = PackedVector2Array(-8, 0, 0, 8, 0, 0)
+
+[node name="BoxCornerDown" type="Polygon2D" parent="." unique_id=883752462]
+visible = false
+color = Color(0.2159017, 0.21590173, 0.2159017, 1)
+polygon = PackedVector2Array(-8, 0, 0, 0, 0, -8)
+
+[node name="ScaleLine" type="Line2D" parent="." unique_id=721867550]
+visible = false
+points = PackedVector2Array(0, 0, 56, 0)
+width = 2.0
+default_color = Color(0.3180198, 0.31801978, 0.31801975, 1)
+
+[node name="Border" type="Panel" parent="." unique_id=1695351506]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 64.0
+offset_right = 104.0
+offset_bottom = 88.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_q0jgm")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1783543624]
+visible = false
+layout_mode = 0
+offset_left = 80.0
+offset_top = 20.0
+offset_right = 112.0
+offset_bottom = 52.0
+texture = ExtResource("3_1vcit")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="." unique_id=1857626871]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 24.0
+mouse_filter = 1
+mouse_behavior_recursive = 2
+flat = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

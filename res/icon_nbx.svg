@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <path d="M64 0L128 96L0 96L64 0Z" fill="#6B757D" fill-rule="evenodd" transform="matrix(0 1 -1 0 160 64)" />
+  </g>
+</svg>

@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://cnmx27ykjcbf4"]
+
+[ext_resource type="Theme" uid="uid://c0x84h6io57pd" path="res://res/soft_light.tres" id="1_eer68"]
+[ext_resource type="Script" uid="uid://drjsy82nrid4s" path="res://scenes/main_browser.gd" id="1_ui5w8"]
+[ext_resource type="PackedScene" uid="uid://ca0jnnij8s0a7" path="res://gui/pd_viewer.tscn" id="2_eer68"]
+[ext_resource type="Script" uid="uid://mcbj2ubqfy64" path="res://gui/file_tree.gd" id="3_ui5w8"]
+
+[node name="MainBrowser" type="Control" unique_id=1462747962]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ui5w8")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="." unique_id=1108476387]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftPanel" type="VSplitContainer" parent="HSplitContainer" unique_id=493156810]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+split_offsets = PackedInt32Array(0, 0)
+dragging_enabled = false
+
+[node name="CommitSelectPanel" type="Panel" parent="HSplitContainer/LeftPanel" unique_id=1320264223]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("1_eer68")
+
+[node name="BranchOption" type="OptionButton" parent="HSplitContainer/LeftPanel/CommitSelectPanel" unique_id=418966918]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = -60.0
+grow_horizontal = 0
+text_overrun_behavior = 3
+fit_to_longest_item = false
+
+[node name="CommitOption" type="OptionButton" parent="HSplitContainer/LeftPanel/CommitSelectPanel" unique_id=1233519716]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = 56.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 2
+text_overrun_behavior = 3
+fit_to_longest_item = false
+
+[node name="Label" type="Label" parent="HSplitContainer/LeftPanel/CommitSelectPanel" unique_id=1891684565]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 17.0
+offset_right = 61.0
+offset_bottom = 39.0
+theme = ExtResource("1_eer68")
+text = "Branch"
+
+[node name="Label2" type="Label" parent="HSplitContainer/LeftPanel/CommitSelectPanel" unique_id=1445456844]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 60.0
+offset_right = 67.0
+offset_bottom = 82.0
+theme = ExtResource("1_eer68")
+text = "Commit"
+
+[node name="FileTree" type="Control" parent="HSplitContainer/LeftPanel" unique_id=660215503]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+script = ExtResource("3_ui5w8")
+
+[node name="Tree" type="Tree" parent="HSplitContainer/LeftPanel/FileTree" unique_id=407838143]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_eer68")
+columns = 2
+hide_root = true
+tile_scroll_hint = true
+
+[node name="FileHistoryPanel" type="Panel" parent="HSplitContainer/LeftPanel" unique_id=1320276005]
+custom_minimum_size = Vector2(0, 60)
+custom_maximum_size = Vector2(-1, 60)
+layout_mode = 2
+theme = ExtResource("1_eer68")
+
+[node name="Label3" type="Label" parent="HSplitContainer/LeftPanel/FileHistoryPanel" unique_id=524684990]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 19.0
+offset_right = 61.0
+offset_bottom = 41.0
+theme = ExtResource("1_eer68")
+text = "History"
+
+[node name="HistoryOption" type="OptionButton" parent="HSplitContainer/LeftPanel/FileHistoryPanel" unique_id=753537850]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -164.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 2
+text_overrun_behavior = 3
+fit_to_longest_item = false
+
+[node name="PdViewer" parent="HSplitContainer" unique_id=1982347195 instance=ExtResource("2_eer68")]
+layout_mode = 2
+
+[connection signal="item_selected" from="HSplitContainer/LeftPanel/CommitSelectPanel/BranchOption" to="." method="_on_branch_option_item_selected"]
+[connection signal="item_selected" from="HSplitContainer/LeftPanel/CommitSelectPanel/CommitOption" to="." method="_on_commit_option_item_selected"]
+[connection signal="item_selected" from="HSplitContainer/LeftPanel/FileTree/Tree" to="." method="_on_tree_item_selected"]
+[connection signal="item_selected" from="HSplitContainer/LeftPanel/FileHistoryPanel/HistoryOption" to="." method="_on_history_option_item_selected"]

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bg21qjm2xyyft"]
+
+[ext_resource type="Script" uid="uid://bjjqdeeotw4k8" path="res://scenes/file_diff_tool.gd" id="1_rjwfv"]
+[ext_resource type="PackedScene" uid="uid://ca0jnnij8s0a7" path="res://gui/pd_viewer.tscn" id="2_8x5pt"]
+
+[node name="FileDiffTool" type="Control" unique_id=165859593]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rjwfv")
+
+[node name="PdViewer" parent="." unique_id=1982347195 instance=ExtResource("2_8x5pt")]
+layout_mode = 1

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bu3borbdoyxli"]
+
+[ext_resource type="Script" uid="uid://bm7swpabknmds" path="res://scenes/dir_diff_tool.gd" id="1_bpnoc"]
+[ext_resource type="Script" uid="uid://mcbj2ubqfy64" path="res://gui/file_tree.gd" id="2_fun5h"]
+[ext_resource type="Theme" uid="uid://c0x84h6io57pd" path="res://res/soft_light.tres" id="3_c1pqu"]
+[ext_resource type="PackedScene" uid="uid://ca0jnnij8s0a7" path="res://gui/pd_viewer.tscn" id="4_qmjnk"]
+
+[node name="DirDiffTool" type="Control" unique_id=1666769654]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bpnoc")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="." unique_id=1214028487]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offsets = PackedInt32Array(240)
+split_offset = 240
+
+[node name="LeftPanel" type="VSplitContainer" parent="HSplitContainer" unique_id=631992989]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+split_offsets = PackedInt32Array(300)
+dragging_enabled = false
+split_offset = 300
+
+[node name="FileTree" type="Control" parent="HSplitContainer/LeftPanel" unique_id=574369984]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+script = ExtResource("2_fun5h")
+
+[node name="Tree" type="Tree" parent="HSplitContainer/LeftPanel/FileTree" unique_id=1231181767]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_c1pqu")
+columns = 2
+hide_root = true
+tile_scroll_hint = true
+
+[node name="PdViewer" parent="HSplitContainer" unique_id=1982347195 instance=ExtResource("4_qmjnk")]
+layout_mode = 2
+
+[connection signal="item_selected" from="HSplitContainer/LeftPanel/FileTree/Tree" to="." method="_on_tree_item_selected"]

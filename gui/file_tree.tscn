@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c4iehrs0dgh5k"]
+
+[ext_resource type="Script" uid="uid://mcbj2ubqfy64" path="res://gui/file_tree.gd" id="1_1npt0"]
+[ext_resource type="Theme" uid="uid://c0x84h6io57pd" path="res://res/soft_light.tres" id="1_3xseo"]
+
+[node name="FileTree" type="Control" unique_id=660215503]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 648.0
+script = ExtResource("1_1npt0")
+
+[node name="Tree" type="Tree" parent="." unique_id=407838143]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3xseo")
+columns = 2
+hide_root = true
+tile_scroll_hint = true

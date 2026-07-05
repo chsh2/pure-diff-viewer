@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c7ki3patawhyn"]
+
+[ext_resource type="Script" uid="uid://80qgo3fwr36u" path="res://gui/widget_connect.gd" id="1_noxrq"]
+
+[node name="WidgetConnect" type="Control" unique_id=401283086]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_behavior_recursive = 1
+script = ExtResource("1_noxrq")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=492582261]
+points = PackedVector2Array(16, 8, 136, 72, 48, 128, 200, 192)
+width = 2.0
+default_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+texture_mode = 1
+antialiased = true
+
+[node name="Outlet" type="Control" parent="." unique_id=532088942]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="Outlet" unique_id=1193103500]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+pivot_offset = Vector2(4, 4)
+color = Color(0.0885599, 0.0885599, 0.0885599, 1)
+
+[node name="Inlet" type="Control" parent="." unique_id=2073799249]
+anchors_preset = 0
+offset_left = 48.0
+offset_right = 88.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="ColorRect" type="ColorRect" parent="Inlet" unique_id=1132601705]
+layout_mode = 0
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+pivot_offset = Vector2(4, 0)
+color = Color(0.0885599, 0.0885599, 0.0885599, 1)
