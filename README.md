@@ -1,5 +1,13 @@
 # Pure Diff Viewer: A Visual Git Diff Tool for Pure Data Patches
 
+> This project is an entry of the event [KVR Developer Challenge 2026](https://www.kvraudio.com/kvr-developer-challenge/2026/).
+>
+>KVR Audio Links: [[Download]](https://www.kvraudio.com/product/pure-diff-viewer-by-chsh2) / [[Vote]](https://www.kvraudio.com/kvr-developer-challenge/2026/)
+>
+>Other download options will be available soon.
+
+---
+
 This program aims at facilitating the version control of [Pure Data](https://puredata.info/) (Pd), a visual programming language for computer music. When organizing Pd patches in a [Git](https://git-scm.com/) repository, the differences between commits are shown in plain text. The text is hardly human-readable and makes it difficult to track the changes of a patch and maintain it in the long term.
 
 This program attempts to solve this problem by visualizing the differences and rendering them in the Pd node graph. It has the following features:
