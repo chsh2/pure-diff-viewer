@@ -2,9 +2,7 @@
 
 > This project is an entry of the event [KVR Developer Challenge 2026](https://www.kvraudio.com/kvr-developer-challenge/2026/).
 >
->KVR Audio Links: [[Download]](https://www.kvraudio.com/product/pure-diff-viewer-by-chsh2) / [[Vote]](https://www.kvraudio.com/kvr-developer-challenge/2026/)
->
->Other download options will be available soon.
+>KVR Audio Links: [[Download]](https://www.kvraudio.com/product/pure-diff-viewer-by-chsh2) / [[Vote]](https://www.kvraudio.com/kvr-developer-challenge/2026/#dc26-36371)
 
 ---
 
