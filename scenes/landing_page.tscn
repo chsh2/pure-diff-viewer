@@ -37,7 +37,6 @@ oversampling_override = 1.0
 title = "Open a Directory"
 initial_position = 1
 size = Vector2i(960, 480)
-visible = true
 theme = ExtResource("2_nftrr")
 file_mode = 2
 display_mode = 1

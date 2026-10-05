@@ -2,14 +2,19 @@ extends Control
 
 const GitUtils = preload("res://core/git/GitUtils.cs")
 
+const CONFIG_PATH := "user://path_history.cfg"
+
 func _ready() -> void:
+    load_state()
+
     $VersionNumber.text = "Pure Diff Viewer v%s" % ProjectSettings.get_setting("application/config/version")
-    
+
     var args := OS.get_cmdline_args()
     print("Pure Diff Viewer: Starts with arguments %s" % args)
     if args.size() < 2 or args[0] == "--scene":
+        $FileDialog.visible = true
         return
-        
+
     # Start diff tool
     var local_path = args[0]
     var remote_path = args[1]
@@ -27,7 +32,7 @@ func _ready() -> void:
         dir_diff_tool.path_new = remote_path
         get_tree().root.add_child.call_deferred(dir_diff_tool)
         queue_free()
- 
+
     # Single file mode
     elif FileAccess.file_exists(local_path) or FileAccess.file_exists(remote_path):
         if not local_path.ends_with(".pd") and not remote_path.ends_with(".pd"):
@@ -41,7 +46,6 @@ func _ready() -> void:
         get_tree().root.add_child.call_deferred(file_diff_tool)
         queue_free()
 
-    
 
 func _on_file_dialog_dir_selected(dir) -> void:
     var path = dir
@@ -56,3 +60,27 @@ func _on_file_dialog_dir_selected(dir) -> void:
 
 func _on_file_dialog_canceled() -> void:
     get_tree().quit()
+
+func load_state() -> void:
+    var config := ConfigFile.new()
+    var err := config.load(CONFIG_PATH)
+    if err != OK:
+        return
+
+    var favorites := config.get_value("FileDialog", "favorites", PackedStringArray()) as PackedStringArray
+    if favorites.size() > 0:
+        $FileDialog.set_favorite_list(favorites)
+    var recent_paths := config.get_value("FileDialog", "recent_paths", PackedStringArray()) as PackedStringArray
+    if recent_paths.size() > 0:
+        $FileDialog.set_recent_list(recent_paths)
+        
+func write_state() -> void:
+    var config := ConfigFile.new()
+    config.set_value("FileDialog", "favorites", $FileDialog.get_favorite_list())
+    config.set_value("FileDialog", "recent_paths", $FileDialog.get_recent_list())
+    var err := config.save(CONFIG_PATH)
+    if err != OK:
+        push_error("Failed to save landing page state: %d" % err)
+
+func _exit_tree() -> void:
+    write_state()
