@@ -265,7 +265,7 @@ public partial class GitUtils : RefCounted
         return diff?.ToString() ?? string.Empty;
     }
 
-  // Method of the library QueryBy(filePath, filter) is slow. Use a workaround instead.
+  // Use blob SHA comparison instead of full tree diff to speed up.
   public static string[] GetCommitsForFile(string repoPath, string branchName, string filePath, int maxCount = 0, int maxCommitCount = 0)
     {
         using var repo = new Repository(repoPath);
@@ -290,26 +290,28 @@ public partial class GitUtils : RefCounted
             if (maxCommitCount > 0 && checkedCount > maxCommitCount)
                 break;
 
-            bool commitHasFile = commit[filePath] != null;
+            var commitEntry = commit[filePath];
+            var commitHasFile = commitEntry != null && commitEntry.Target is Blob;
             var parent = commit.Parents.FirstOrDefault();
-            bool parentHasFile = parent != null && parent[filePath] != null;
+            var parentEntry = parent?[filePath];
+            var parentHasFile = parentEntry != null && parentEntry.Target is Blob;
 
             if (!commitHasFile && !parentHasFile)
                 continue;
 
-            if (parent == null)
+            if (parent == null || !parentHasFile)
             {
                 if (commitHasFile)
                     result.Add(commit.Sha);
                 continue;
             }
 
-            var changes = repo.Diff.Compare<TreeChanges>(parent.Tree, commit.Tree);
-            var fileChange = changes.FirstOrDefault(c => c.Path == filePath);
-
-            if (fileChange != null && fileChange.Status != ChangeKind.Unmodified)
+            if (commitHasFile && parentHasFile)
             {
-                result.Add(commit.Sha);
+                var commitBlobSha = ((Blob)commitEntry.Target).Id.Sha;
+                var parentBlobSha = ((Blob)parentEntry.Target).Id.Sha;
+                if (commitBlobSha != parentBlobSha)
+                    result.Add(commit.Sha);
             }
 
             if (maxCount > 0 && result.Count >= maxCount)

@@ -144,8 +144,8 @@ var commit_option_map = []
 func set_file_commits_history(path):
     file_history_selector.clear()
     commit_option_map = []
-    # TODO: The library implementation is slow. Must set a constraint to # of commits
-    var commit_shas = GitUtils.GetCommitsForFile(repo, current_branch, path, 0, 500)
+
+    var commit_shas = GitUtils.GetCommitsForFile(repo, current_branch, path, 0, 0)
     for sha in commit_shas:
         for i in commits.size():
             if commits[i].sha == sha:
